@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:travelAPP"
+             xmlns:local1="clr-namespace:travelAPP.Behaviors"
+             x:Class="travelAPP.RatingStar">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 40, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <Grid RowSpacing="0" ColumnSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Text="您滿意嗎?" Grid.Row="0" FontSize="Medium" HorizontalOptions="Center" VerticalOptions="Center" Margin="10"/>
+            <Image Source="" x:Name="RatingPrizeImg" Grid.Row="1" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="5"/>
+            <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" HeightRequest="70">
+                <Grid>
+                    <Grid.Behaviors>
+                        <local1:StarBehavior x:Name="starOne" GroupName="myStar"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="starBlankOne"
+                Source="{local:ImageResource travelAPP.Images.star_outline.png}" />
+
+                    <Image x:Name="starSelectedOne"
+                Source="{local:ImageResource travelAPP.Images.star_selected.png}"
+                IsVisible="{Binding Source={x:Reference starOne},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local1:StarBehavior x:Name="starTwo" GroupName="myStar"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="starBlankTwo"
+                Source="{local:ImageResource travelAPP.Images.star_outline.png}" />
+
+                    <Image x:Name="starSelectedTwo"
+                Source="{local:ImageResource travelAPP.Images.star_selected.png}"
+                IsVisible="{Binding Source={x:Reference starTwo},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local1:StarBehavior x:Name="starThree" GroupName="myStar"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="starBlankThree"
+                Source="{local:ImageResource travelAPP.Images.star_outline.png}" />
+
+                    <Image x:Name="starSelectedThree"
+                Source="{local:ImageResource travelAPP.Images.star_selected.png}"
+                IsVisible="{Binding Source={x:Reference starThree},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local1:StarBehavior x:Name="starFour" GroupName="myStar"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="starBlankFour"
+                Source="{local:ImageResource travelAPP.Images.star_outline.png}" />
+
+                    <Image x:Name="starSelectedFour"
+                Source="{local:ImageResource travelAPP.Images.star_selected.png}"
+                IsVisible="{Binding Source={x:Reference starFour},
+                                    Path=IsStarred}"/>
+                </Grid>
+                <Grid >
+                    <Grid.Behaviors>
+                        <local1:StarBehavior x:Name="starFive" GroupName="myStar"/>
+                    </Grid.Behaviors>
+                    <Image x:Name="starBlankFive"
+                Source="{local:ImageResource travelAPP.Images.star_outline.png}" />
+
+                    <Image x:Name="starSelectedFive"
+                Source="{local:ImageResource travelAPP.Images.star_selected.png}"
+                IsVisible="{Binding Source={x:Reference starFive},
+                                    Path=IsStarred}"/>
+                </Grid>
+            </StackLayout>
+            <StackLayout>
+                <StackLayout.Resources>
+                    <ResourceDictionary>
+                        <local:RatingConverter x:Key="ratingConverter" />
+                        <Style TargetType="Label" >
+                            <Setter Property="TextColor" Value="#4CAF50" />
+                        </Style>
+                    </ResourceDictionary>
+                </StackLayout.Resources>
+                <Label x:Name="label" IsVisible="False" Text="{Binding Source={x:Reference starFive},
+                                    Path=Rating, Converter={StaticResource ratingConverter}}" ></Label>
+            </StackLayout>
+            <Label Grid.Row="3" BackgroundColor="#53ff53" Text="回饋與建議(限500字)" FontSize="Medium"/>
+            <Editor x:Name="editFeedback" Grid.Row="4" HeightRequest="200" VerticalOptions="FillAndExpand" Placeholder="請輸入建議" MaxLength="500" BackgroundColor="#e0e0e0"/>
+            <Button Text="送出" Grid.Row="5" BackgroundColor="Silver" Clicked="btnRatingStar"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

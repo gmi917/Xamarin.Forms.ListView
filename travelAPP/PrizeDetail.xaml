@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="travelAPP.PrizeDetail">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 40, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label x:Name="userPoint" Text="" Grid.Row="0" FontSize="Medium" TextColor="Red" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Image Source="" x:Name="PrizeImg" Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Grid>
+            <Grid RowSpacing="1" ColumnSpacing="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.35*" />
+                    <ColumnDefinition Width="0.9*" />
+                </Grid.ColumnDefinitions>
+                <Label Text="獎品名稱:" FontSize="20" Grid.Row="0" Grid.Column="0" Margin="5,0,0,0"/>
+                <Label x:Name="PrizeName" FontSize="20" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0"/>
+                <Label Text="兌換點數:" FontSize="20" Grid.Row="1" Grid.Column="0" Margin="5,0,0,0"/>
+                <Label x:Name="PrizePoint" FontSize="20" Grid.Row="1" Grid.Column="1" Margin="0,0,0,0"/>
+                <Label Text="分類名稱:" FontSize="20" Grid.Row="2" Grid.Column="0" Margin="5,0,0,0"/>
+                <Label x:Name="PrizeCategoryName" FontSize="20" Grid.Row="2" Grid.Column="1" Margin="0,0,0,0"/>
+                <Label Text="獎品描述:" FontSize="20" Grid.Row="3" Grid.Column="0" Margin="5,0,0,0"/>
+                <ScrollView Grid.Row="3" Grid.Column="1" HeightRequest="180" WidthRequest="70" VerticalScrollBarVisibility="Always">
+                    <Label x:Name="PrizeDescription" FontSize="20" LineBreakMode="WordWrap" Margin="0,0,0,0"/>
+                </ScrollView>
+            </Grid>
+            <Grid RowSpacing="2" ColumnSpacing="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="回上一頁" BackgroundColor="Silver" Grid.Row="0" Grid.Column="0" HorizontalOptions="End" VerticalOptions="EndAndExpand" Clicked="btnBack"/>
+                <Button Text="兌換" BackgroundColor="Silver" Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="EndAndExpand" x:Name="btnExchange" Clicked="btnExchange_Click"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

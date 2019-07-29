@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Validators="clr-namespace:travelAPP.Validators.Implementations"
+             xmlns:Behaviors="clr-namespace:travelAPP.Behaviors"
+             xmlns:local="clr-namespace:travelAPP"
+             x:Class="travelAPP.Register">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 40, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <StackLayout Padding="15">
+            <StackLayout.Behaviors>
+                <Behaviors:ValidationGroupBehavior x:Name="form"/>
+            </StackLayout.Behaviors>
+            <Label>*使用者帳號</Label>
+            <Entry x:Name="accountText" Placeholder="請輸入帳號">
+                <Entry.Behaviors>
+                    <Behaviors:ValidationBehavior Group="{x:Reference form}" 
+                                              PropertyName="Text">
+                        <Behaviors:ValidationBehavior.Validators>
+                            <!--<Validators:RequiredValidator />-->
+                            <Validators:AccountFormatValidator
+                            Message=""/>
+                        </Behaviors:ValidationBehavior.Validators>
+                    </Behaviors:ValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label>*密碼</Label>
+            <Entry x:Name="password" IsPassword="true" Text="{Binding UserPWD}" Placeholder="請輸入密碼">
+                <Entry.Behaviors>
+                    <Behaviors:ValidationBehavior x:Name="passwordValidator"/>
+                    <Behaviors:ValidationBehavior  
+                                              PropertyName="Text">
+                        <Behaviors:ValidationBehavior.Validators>
+                            <!--<Validators:RequiredValidator />-->
+                            <Validators:ConfirmPWDValidator
+                            Message=""/>
+                        </Behaviors:ValidationBehavior.Validators>
+                    </Behaviors:ValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label>*確認密碼</Label>
+        <Entry x:Name="confirmPassword" IsPassword="true" Placeholder="請再次輸入密碼">
+            <Entry.Behaviors>
+                <Behaviors:ValidationBehavior  
+                                              PropertyName="Text">
+                    <Behaviors:ValidationBehavior.Validators>
+                        <Validators:ConfirmPWDValidator
+                            Message=""/>
+                    </Behaviors:ValidationBehavior.Validators>
+                </Behaviors:ValidationBehavior>
+                <Behaviors:ConfirmPasswordBehavior x:Name="ConfirmPasswordBehavior" 
+    CompareToEntry="{Binding Source={x:Reference password}}"/>
+                <!--<Behaviors:ConfirmPasswordBehavior x:Name="confirmPasswordBehavior" CompareToEntry="{Binding Source={x:Reference password}}" />-->
+            </Entry.Behaviors>
+        </Entry>
+        <Label>*使用者名字</Label>
+            <Entry x:Name="nameText" Placeholder="請輸入使用者名字">
+                <Entry.Behaviors>
+                    <Behaviors:ValidationBehavior  
+                                              PropertyName="Text">
+                        <Behaviors:ValidationBehavior.Validators>
+                            <!--<Validators:RequiredValidator />-->
+                        <Validators:RequiredValidator
+                            Message=""/>
+                    </Behaviors:ValidationBehavior.Validators>
+                    </Behaviors:ValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label>*使用者email</Label>
+            <Entry x:Name="emailText" Placeholder="請輸入E-mail">
+                <Entry.Behaviors>
+                    <Behaviors:ValidationBehavior  
+                                              PropertyName="Text">
+                        <Behaviors:ValidationBehavior.Validators>
+                            <!--<Validators:RequiredValidator />-->
+                            <Validators:EmailFormatValidator
+                            Message=""/>
+                        </Behaviors:ValidationBehavior.Validators>
+                    </Behaviors:ValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label>行動電話號碼</Label>
+        <Entry x:Name="mobileText" Text="{Binding UserAccount}" Placeholder="請輸入行動電話號碼">
+                <Entry.Behaviors>
+                    <Behaviors:ValidationBehavior  PropertyName="Text">
+                        <Behaviors:ValidationBehavior.Validators>
+                            <!--<Validators:RequiredValidator />-->
+                            <Validators:FormatValidator
+                            Message="行動電話號碼需10個數字" 
+                            Format="^[0-9]{10}$" />
+                        </Behaviors:ValidationBehavior.Validators>
+                    </Behaviors:ValidationBehavior>
+                </Entry.Behaviors>
+            </Entry>
+        <Label Text="*表必填欄位" FontSize="15" TextColor="Red" HorizontalOptions="End"/>
+        <StackLayout HorizontalOptions="Center" Orientation ="Horizontal">
+            <Button Text="註冊" BackgroundColor="Silver" x:Name="button" Clicked="btnOK" />
+            <Button Text="取消" BackgroundColor="Silver" Clicked="btnCancel" />
+        </StackLayout>
+        </StackLayout>
+
+</ContentPage>

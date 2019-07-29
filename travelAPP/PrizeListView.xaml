@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             xmlns:local="clr-namespace:travelAPP"
+             xmlns:extended="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"             
+             x:Class="travelAPP.PrizeListView">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 40, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.BindingContext>
+        <local:MainViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Margin="0,0,0,0">
+            <Label Text="積分兌換平台" TextColor="Black" FontSize="Medium" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Margin="0,0,0,0"/>
+            <Grid RowSpacing="0" ColumnSpacing="0" Margin="0,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!--左邊部分-->
+                <Button Text="登出" BackgroundColor="Silver" x:Name="Logout" Clicked="btnLogout" Grid.Row="1" Grid.Column="0" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" Margin="0,0,0,0"/>
+                <Button Text="回AR導覽" BackgroundColor="Silver" Clicked="btnAR" Grid.Row="1" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="CenterAndExpand"/>
+                <!--右邊部分-->
+                <Image Aspect="AspectFit" Source="{local:ImageResource travelAPP.Images.ic_lock.png}" x:Name="iconImage" Grid.Row="1" Grid.Column="3" HorizontalOptions="Start" VerticalOptions="Center" Margin="0,0,0,0"/>
+                <Label x:Name="account" Text="" Grid.Row="1" Grid.Column="4" HorizontalOptions="Start" VerticalOptions="Center" Margin="0,0,0,0"/>
+            </Grid>
+            <Label Text="查無資料..." IsVisible="{Binding IsEmptyView}" Margin="0,100,0,0" FontSize="25" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+            
+                <!--下方ListView部分-->
+            <StackLayout Margin="0,0,0,0">
+                <ListView ItemsSource="{Binding Items}" SeparatorColor="Black"  ItemTapped="MainListView_ItemTapped"  CachingStrategy="RecycleElement" HasUnevenRows="True">
+
+                    <ListView.Behaviors>
+                        <extended:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}" />
+                    </ListView.Behaviors>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="120"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{Binding image}" VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand"
+                                   WidthRequest="120" HeightRequest="120" Grid.RowSpan="2" Grid.Column="0" Grid.Row="0" />
+                                    <StackLayout VerticalOptions="CenterAndExpand" Margin="5,0,0,0" Grid.Column="1" Grid.Row="0" >
+                                        <Label Text="{Binding prizeName}" TextColor="Black" FontSize="Large" />
+                                        <Label Text="{Binding point}" TextColor="DeepPink" FontSize="Medium" />
+                                    </StackLayout>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    
+                    <ListView.Footer>
+                        <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                            <!-- set the footer to have a zero height when invisible -->
+                            <Grid.Triggers>
+                                <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                    <Setter Property="HeightRequest" Value="0" />
+                                </Trigger>
+                            </Grid.Triggers>
+                            <!-- the loading content -->
+                            <Label Text="{Binding FooterText}" TextColor="Black" FontSize="20" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Grid>
+                    </ListView.Footer>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

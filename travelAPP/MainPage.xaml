@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"                    
+             x:Class="travelAPP.MainPage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 40, 0, 0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center" Padding="30,0" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Text="使用者登入" FontSize="40" Grid.Row="0" HorizontalTextAlignment="Center" />
+        <Label Text="帳號" Grid.Row="1" />
+        <Entry Placeholder="請輸入帳號" x:Name="account" Grid.Row="2" HorizontalOptions="FillAndExpand" />
+        <Label Text="密碼" 
+           Grid.Row="3"/>
+        <Entry Placeholder="請輸入密碼"
+           x:Name="password"
+           Grid.Row="4"
+           IsPassword="True"  />
+        <Button Text="登入" BackgroundColor="Silver"
+            Clicked="btnLogin" Grid.Row="5"
+            HorizontalOptions="FillAndExpand"/>
+        <Button Text="註冊" BackgroundColor="Silver"
+            Clicked="btnRegister" Grid.Row="6"
+            HorizontalOptions="FillAndExpand"/>
+    </Grid>
+</ContentPage>
