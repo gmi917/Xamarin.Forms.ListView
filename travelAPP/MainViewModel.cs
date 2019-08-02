@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using static travelAPP.DataService;
 
@@ -74,13 +76,17 @@ namespace travelAPP
                     return Items.Count < dataService.TotlaCount;
                 }
             };
-
-            DownloadDataAsync();
+                        
+            Device.BeginInvokeOnMainThread(async () =>
+            await DownloadDataAsync());
+            
         }
 
         private async Task DownloadDataAsync()
         {
+            UserDialogs.Instance.ShowLoading("");            
             var items = await dataService.GetItemsAsync(pageIndex: 0, pageSize: app.PageSize);
+            UserDialogs.Instance.HideLoading();
             if (items != null && items.Count > 0)
             {
                 IsEmptyView = false;

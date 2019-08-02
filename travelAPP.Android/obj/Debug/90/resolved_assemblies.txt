@@ -1,4 +1,6 @@
 C:\Users\ivanzkchou\source\repos\travelAPP\travelAPP.Android\obj\Debug\90\android\assets\travelAPP.Android.dll
+C:\Users\ivanzkchou\source\repos\travelAPP\travelAPP.Android\obj\Debug\90\android\assets\Acr.UserDialogs.dll
+C:\Users\ivanzkchou\source\repos\travelAPP\travelAPP.Android\obj\Debug\90\android\assets\AndHUD.dll
 C:\Users\ivanzkchou\source\repos\travelAPP\travelAPP.Android\obj\Debug\90\android\assets\FormsViewGroup.dll
 C:\Users\ivanzkchou\source\repos\travelAPP\travelAPP.Android\obj\Debug\90\android\assets\Java.Interop.dll
 C:\Users\ivanzkchou\source\repos\travelAPP\travelAPP.Android\obj\Debug\90\android\assets\Mono.Android.dll

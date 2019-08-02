@@ -107,6 +107,8 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		/* We need to ensure that "travelAPP.Android.dll" comes first in this list. */
 		"travelAPP.Android.dll",
+		"Acr.UserDialogs.dll",
+		"AndHUD.dll",
 		"FormsViewGroup.dll",
 		"Newtonsoft.Json.dll",
 		"Toasts.Forms.Plugin.Abstractions.dll",

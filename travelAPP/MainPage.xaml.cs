@@ -108,7 +108,23 @@ namespace travelAPP
                                             Application.Current.Properties["isLoggedIn"] = true;                                            
                                         }
                                         await Application.Current.SavePropertiesAsync();
-                                        if (Device.RuntimePlatform == Device.iOS)
+                                        var postLogData = new UserLog
+                                        {
+                                            userAccount = account.Text                                            
+                                        };
+                                        var jsonLog = JsonConvert.SerializeObject(postLogData);
+                                        var contentLog = new StringContent(jsonLog, Encoding.UTF8, "application/json");
+
+                                        //  send a POST request                  
+                                        var uriLog = app.url + "/AR_admin/UseLoginLog";
+                                        var resultLog = await client.PostAsync(uriLog, contentLog);
+
+                                        //if (resultLog.IsSuccessStatusCode)
+                                        //{
+
+                                        //}
+
+                                            if (Device.RuntimePlatform == Device.iOS)
                                         {
                                             await Navigation.PushModalAsync(new PrizeListView());
                                         }
